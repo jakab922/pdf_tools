@@ -1,7 +1,7 @@
 #!/bin/sh
 
-export page_count=`pdf_page_count "$1"`
-export len=`python -c "from math import floor, log; print int(floor(log(${page_count}) / log(10))) + 1"`
+page_count=`pdf_page_count "$1"`
+len=`pdf_util_len "$1"`
 for i in `seq -f "%0${len}g" 1 $page_count`; do
     yes | gs -dBATCH -sOutputFile="${2-page}${i}.pdf" -dFirstPage=${i} -dLastPage=${i} -sDEVICE=pdfwrite "$1" >& /dev/null
 done

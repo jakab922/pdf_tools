@@ -1,0 +1,4 @@
+#!/bin/sh
+
+page_count=`pdf_page_count "$1"`
+python -c "from math import floor, log; print int(floor(log(${page_count}) / log(10))) + 1"

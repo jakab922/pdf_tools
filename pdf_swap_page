@@ -1,0 +1,15 @@
+#!/bin/sh
+
+hidden=`python -c "from random import randint as ri; print ''.join(chr(ri(97, 122)) for _ in xrange(15))"`
+mkdir -p ${hidden}/repl
+cp "$1" ${hidden}/
+cp "$3" ${hidden}/repl/
+cd $hidden
+pdf_to_pages "$1"
+len=`pdf_util_len "$1"`
+mv "repl/$3" "page`printf %0${len}d $2`.pdf"
+pdf_merge "$4" page*
+cd ..
+mv "${hidden}/${4}.pdf" ./
+rm -Rf "${hidden}"
+
