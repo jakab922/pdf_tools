@@ -1,0 +1,3 @@
+#!/bin/sh
+
+gs -q -dNODISPLAY -c "(${1}) (r) file runpdfbegin pdfpagecount = quit" "$1"

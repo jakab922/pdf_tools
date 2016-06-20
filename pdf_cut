@@ -1,0 +1,3 @@
+#!/bin/sh
+
+yes | gs -dBATCH -sOutputFile="${4-cut}_${2}-${3}.pdf" -dFirstPage=$2 -dLastPage=$3 -sDEVICE=pdfwrite "$1" >& /dev/null
